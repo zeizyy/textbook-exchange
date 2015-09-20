@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form action="/login/" method="post">
+	<p>
+		<strong>Username:</strong>
+		<input class="form-control" name="username">
+	</p>
+
+	<input type="submit" class="button button-3d button-primary button-rounded button-tiny" value="Login">
+	New?
+	<a href="/register/" class="button button-3d button-action button-rounded button-tiny">Register</a>
+
+	</form>
+	
+{% endblock %}

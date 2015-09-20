@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>
+  {% if switch %}
+  All Sellers for <strong>{{zitou}}{{kehao}}</strong> Textbooks:
+  {% else %}
+  All Buyers for <strong>{{zitou}}{{kehao}}</strong> Textbooks:
+  {% endif %}
+  </h2>
+	{% if books %}
+<div class="table-responsive">
+    <table border="1" class="table table-striped table-hover">
+    {% if switch %}
+      <tr>
+        <th>Name</th>
+        <th>Seller</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+        {% for book in books %}
+        <td>
+          <a href="/exchange/viewBook/{{book.id}}">{{book.name}}</a>
+        </td>
+        <td><a href="/viewUser/{{book.user.id}}/">{{book.user.name}}</a></td>
+        <td>${{book.price}}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+        <tr>
+        <th>Name</th>
+        <th>Buyer</th>
+      </tr>
+      {% for r in books %}
+      <tr>
+        <td>
+          <a href="/exchange/viewRequest/{{r.id}}">{{r.index_name}}</a>
+        </td>
+        <td><a href="/viewUser/{{r.user.id}}/">{{r.user.name}}</a></td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </table>
+	</div>
+	{% else %}
+	<h2>No match found. </h2>
+	{% endif %}
+
+{% endblock %}

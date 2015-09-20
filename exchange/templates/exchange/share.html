@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="page-header">Textbooks {{user.name}} Want to Sell<a class="button button-3d button-action button-rounded button-small" data-toggle="modal" data-target="#share"><span class="glyphicon glyphicon-share"></span>Share to Wechat</a></h2>
+
+<!-- 模态框（Modal） -->
+			<div class="modal fade" id="share" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+
+							<h4 class="modal-title" id="myModalLabel">Press <span class="glyphicon glyphicon-option-horizontal"></span> to Share in Wechat
+							<span class="glyphicon glyphicon-hand-up" style="float:right;"></span></h4>
+							<img src="/static/wechat.jpg" width="100%">
+							
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+{% if books %}
+<ul>
+{% for b in books %}
+	<li><a href="/exchange/viewBook/{{b.id}}/">{{b}}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+The user currently have no books to sell...
+{% endif %}
+<h2 class="page-header">Textbooks {{user.name}} Want to Buy</h2>
+{% if requests %}
+<ul>
+{% for r in requests %}
+	<li><a href="/exchange/viewRequest/{{r.id}}/">{{r}}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+The user currently have no books to buy...
+{% endif %}
+{% endblock %}

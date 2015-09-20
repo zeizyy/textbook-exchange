@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>Wechat Id</h2>
+	<small style='color:grey'>Seller will contact you via Wechat</small>
+	<form action="/exchange/addContact/" method="POST">
+		<input class="form-control" name='contact' placeholder='eg. zeizyy'>
+		<br>
+		<input type="submit" class="btn btn-primary" value='Submit'>
+	</form>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Hi {{user.name}}!<a href="/exchange/share/{{user.id}}/" class="button button-3d button-action button-rounded button-small">Share the books I wanna buy/sell</a>
+</h2>
+<strong>Contact(wecaht):</strong>{{user.contact}}
+	<a href="/exchange/addContact/" class="button button-3d button-primary button-rounded button-tiny"><span class="glyphicon glyphicon-edit"></span>Edit</a>
+<h4>Textbooks I want to sell</h4>
+{% if books%}
+<ul>
+{% for b in books %}
+<li>
+	<a href="/exchange/viewBook/{{b.id}}/">{{b}}</a>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>
+	<i>You do not have any posts yet.</i>
+</p>
+	<a href="/exchange/createBook/" class="button button-3d button-action button-rounded button-small">Add a textbook</a>
+{% endif %}
+<h4>Textbooks I have sold</h4>
+{% if books_sold %}
+<ul>
+{% for b in books_sold %}
+<li>
+<a href="/exchange/viewBook/{{b.id}}/">{{b}}</a>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+	<i>You have not sold any textbooks yet.</i>
+{% endif %}
+
+<h4>Textbooks I want to buy.</h4>
+
+{% if requests %}
+<ul>
+{% for r in requests %}
+<li>
+	<a href="/exchange/viewRequest/{{r.id}}/">{{r}}</a>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>
+	<i>You do not have any posts yet.</i>
+</p>
+{% endif %}
+<h4>Textbooks I have bought</h4>
+{% if requests_bought %}
+<ul>
+{% for r in requests_bought %}
+<li>
+<a href="/exchange/viewRequest/{{r.id}}/">{{r}}</a>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+	<i>You have not bought any textbook yet.</i>
+{% endif %}
+
+{% endblock %}

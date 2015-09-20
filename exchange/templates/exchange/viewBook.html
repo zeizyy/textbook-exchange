@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2 class="page-header">{{book}} {% if user == book.user %} {% if not book.sold %}<a class="button button-3d button-caution button-rounded button-small" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-check"></span>Sold</a> {% else %} <a class="button button-3d button-action button-rounded button-small" data-toggle="modal" data-target="#delete">Not really</a> {% endif %} <a class="button button-3d button-primary button-rounded button-small" href="/exchange/editBook/{{book.id}}/"><span class="glyphicon glyphicon-edit"></span>Edit</a>{% endif %} <a class="button button-3d button-action button-rounded button-small" data-toggle="modal" data-target="#share"><span class="glyphicon glyphicon-share"></span>Share to Wechat</a>
+	</h2>
+	<p style="color:grey;">
+	Views: {{book.count}}
+	</p>
+
+	<!-- 模态框（Modal） -->
+			<div class="modal fade" id="delete" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Are you sure？</h4>
+							
+               <a href="/exchange/deleteBook/{{book.id}}/" type="button" class="button button-3d button-caution button-rounded button-tiny">Yes</a>
+               <button type="button" class="button button-3d button-rounded button-tiny" 
+               data-dismiss="modal">No</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+
+	<!-- 模态框（Modal） -->
+			<div class="modal fade" id="share" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+
+							<h4 class="modal-title" id="myModalLabel">Press <span class="glyphicon glyphicon-option-horizontal"></span> to Share in Wechat
+							<span class="glyphicon glyphicon-hand-up" style="float:right;"></span></h4>
+							<img src="/static/wechat.jpg" width="100%">
+							
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+	<p><strong>Seller:</strong> {{book.user.name}}</p>
+	<p><strong>Seller's Wechat id:</strong> {{book.user.contact}}</p>
+	<p><strong>Price:</strong> ${{book.price}}</p>
+	<p><strong>Condition:</strong> {{book.new}}</p>
+	{% if book.isbn %}
+	<p><strong>ISBN:</strong> {{book.isbn}}</p>
+	{% endif %}
+	{% if book.additional %}
+	<p><strong>Additional Info:</strong> {{book.additional}}</p>
+	{% endif %}
+
+	<h2 class="page-header">Other Sellers</h2>
+	{% if rec %}
+	{% for book in rec %}
+	<p><a href ='/exchange/viewBook/{{book.id}}/'>{{book.user.name}}</a></p>
+	{% endfor %}
+	{% else %}
+	<p>None</p>
+	{% endif %}
+
+{% endblock %}

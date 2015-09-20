@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register</h2>
+<form action="/register/" method="post">
+{% if duplicate %}
+该用户名已被注册
+{% elif empty %}
+该两项不能为空
+{% endif %}
+<p>
+<strong>Username:</strong>
+<input class="form-control" type="text" name="username" >
+
+<lead style="color:grey">This is your only login token(no password for this site), please remember and do not share it with anybody.</lead>
+</p>
+<p>
+<strong>Name:</strong>
+<input class="form-control" type="text" name="name" >
+<lead style="color:grey">Use official name to look legit.</lead>
+	</p>
+<input type="submit" class="button button-3d button-action button-rounded button-tiny" value="Register">
+<br>
+<br>
+Already joined？
+<a href="/login/" class="button button-3d button-primary button-rounded button-tiny">Login</a>
+</form>
+{% endblock %}

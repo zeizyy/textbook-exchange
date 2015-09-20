@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+There is currently no seller of this textbook. You can make a post through the form and sellers will contact you once they see your post.
+<form id="event_form" method="post" action="/exchange/createRequest/" enctype="multipart/form-data" role = "form">
+	{{book_form.as_p}}
+	<input type='submit' value='Add' class='btn btn-success'>
+</form>
+{% endblock %}

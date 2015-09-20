@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <div class="search-box">
+    <form action="/exchange/searchBook/" method="post" enctype="multipart/form-data" role="search">
+         <label class="search-text">I AM</label>
+         <div>
+                <input type="checkbox" name="switch" checked />
+         </div>
+    
+         
+         <div>
+         <label for="zitou" class="search-text">Department</label>
+            <input type="text" name="zitou" class="form-control" placeholder="eg. COMM">
+          </div>
+
+          <div>
+          <label for="kehao" class="search-text">Course#</label>
+            <input type="text" name="kehao" class="form-control" placeholder="eg. 1800">
+         </div>
+         <button type="submit" class="button button-3d button-circle" style="margin-top:4px;"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
+  </div>
+  </div>
+  </div>
+  <div style="text-align:center;">
+  <a href="/exchange/requestAll/" class="button button-3d button-primary button-rounded" style="margin-top:10px;" >All Buyer's Post</a>
+  {% if not guest %}
+  <a href="/exchange/guess/" class="button button-3d button-primary button-rounded" style="margin-top:13px;" >
+  {% if match %}
+  <span class='glyphicon glyphicon-exclamation-sign'></span>{% endif %}
+  Guess You Want to Buy/Sell</a>
+  {% if admin %}
+  <a href="/exchange/bookAll/" class="button button-3d button-action button-rounded" style="margin-top:10px;" >All Seller's Post</a>
+  <a href="/exchange/userAll/" class="button button-3d button-action button-rounded" style="margin-top:10px;" >All Users</a>
+  <a href="/logout/" class="button button-3d button-action button-rounded" style="margin-top:10px;" >Logout</a>
+  {% endif %}
+  {% endif %}
+  </div>
+
+<!-- <link rel="stylesheet" href="/static/css/bootstrap-switch.css"> -->
+<link href="//cdn.bootcss.com/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+
+
+<!-- <script type="text/javascript" src="/static/js/bootstrap-switch.js"></script> -->
+
+<script src="//cdn.bootcss.com/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
+
+<style type="text/css">
+  body {
+    background-color: #E5F6F6;
+  }
+</style>
+
+<script type="text/javascript">
+    $(function(){
+      $("[name='switch']").bootstrapSwitch('onText','Buyer')
+      $("[name='switch']").bootstrapSwitch('offText','Seller');
+      $("[name='switch']").bootstrapSwitch('onColor','primary');
+      $("[name='switch']").bootstrapSwitch('offColor','danger');
+      $("[name='switch']").bootstrapSwitch('size','small');
+    })
+    </script>
+
+<script type="text/javascript">
+
+  $(function(){
+    var width = $('.search-box').css('width')
+    $('.search-box').css('height',width)
+    $('#c').click(function(){
+      alert('ddd');
+    })
+  });
+
+</script>
+
+<style type="text/css">
+  .search-box{
+    background-image: url(/static/icon.png);
+    background-repeat:no-repeat;
+    background-size: 100%;
+    height:400px;
+    padding: 4% 15%;
+    text-align: center;
+
+  }
+  div .form-group {
+    display: block;
+  }
+
+  .search-text {
+    font-size: 180%;
+    color:rgb(0,51,102);
+
+  }
+</style>
+
+
+
+  
+
+{% endblock %}

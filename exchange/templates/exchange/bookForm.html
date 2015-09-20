@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<strong>I want to</strong>
+
+<ul id="myTab" class="nav nav-tabs">
+   <li class="active">
+      <a href="#seller" data-toggle="tab">
+         Sell
+      </a>
+   </li>
+   <li><a href="#buyer" data-toggle="tab">Buy</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane in active" id="seller">
+  	<form id="event_form" method="post" action="/exchange/createBook/" enctype="multipart/form-data" role = "form">
+	{{book_form.as_p}}
+	<input type='submit' value='Add' class='button button-3d button-action button-rounded'>
+	</form>
+  </div>
+  <div class="tab-pane" id="buyer">
+  	<form id="buyer_form" method="post" action="/exchange/createRequest/" role= "form">
+	{{request_form.as_p}}
+	<input type='submit' value='Add' class='button button-3d button-action button-rounded'>
+	</form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $('#id_price').wrap("<div class='input-group'></div>");
+    $('#id_price').before("<span class='input-group-addon' id='price'>$</span>");
+    $('#id_new').wrap("<div class='input-group'></div>");
+    $('#id_new').after("<span class='input-group-addon' id='new'>成</span>");    
+  })
+</script>
+{% endblock %}
